@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{AB9E728D-F137-4CCC-8E76-F77A16909F38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console", "Console\Console.csproj", "{DEC43C9C-CBBB-4C50-AB90-ADC176F5E543}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleClient", "ConsoleClient\ConsoleClient.csproj", "{DEC43C9C-CBBB-4C50-AB90-ADC176F5E543}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

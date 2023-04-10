@@ -1,0 +1,5 @@
+/Users/bohdankonopolskyi/RiderProjects/SecuritySystems/FileSystemEmulator/Console/obj/Debug/net6.0/Console.csproj.AssemblyReference.cache
+/Users/bohdankonopolskyi/RiderProjects/SecuritySystems/FileSystemEmulator/Console/obj/Debug/net6.0/Console.GeneratedMSBuildEditorConfig.editorconfig
+/Users/bohdankonopolskyi/RiderProjects/SecuritySystems/FileSystemEmulator/Console/obj/Debug/net6.0/Console.AssemblyInfoInputs.cache
+/Users/bohdankonopolskyi/RiderProjects/SecuritySystems/FileSystemEmulator/Console/obj/Debug/net6.0/Console.AssemblyInfo.cs
+/Users/bohdankonopolskyi/RiderProjects/SecuritySystems/FileSystemEmulator/Console/obj/Debug/net6.0/Console.csproj.CoreCompileInputs.cache

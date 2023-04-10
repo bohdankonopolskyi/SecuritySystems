@@ -1,0 +1,128 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/bohdankonopolskyi/RiderProjects/SecuritySystems/FileSystemEmulator/ConsoleClient/ConsoleClient.csproj": {}
+  },
+  "projects": {
+    "/Users/bohdankonopolskyi/RiderProjects/SecuritySystems/FileSystemEmulator/ConsoleClient/ConsoleClient.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/bohdankonopolskyi/RiderProjects/SecuritySystems/FileSystemEmulator/ConsoleClient/ConsoleClient.csproj",
+        "projectName": "ConsoleClient",
+        "projectPath": "/Users/bohdankonopolskyi/RiderProjects/SecuritySystems/FileSystemEmulator/ConsoleClient/ConsoleClient.csproj",
+        "packagesPath": "/Users/bohdankonopolskyi/.nuget/packages/",
+        "outputPath": "/Users/bohdankonopolskyi/RiderProjects/SecuritySystems/FileSystemEmulator/ConsoleClient/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/bohdankonopolskyi/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "/Users/bohdankonopolskyi/RiderProjects/SecuritySystems/FileSystemEmulator/Core/Core.csproj": {
+                "projectPath": "/Users/bohdankonopolskyi/RiderProjects/SecuritySystems/FileSystemEmulator/Core/Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/Cellar/dotnet/7.0.100/libexec/sdk/7.0.100/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/bohdankonopolskyi/RiderProjects/SecuritySystems/FileSystemEmulator/Core/Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/bohdankonopolskyi/RiderProjects/SecuritySystems/FileSystemEmulator/Core/Core.csproj",
+        "projectName": "Core",
+        "projectPath": "/Users/bohdankonopolskyi/RiderProjects/SecuritySystems/FileSystemEmulator/Core/Core.csproj",
+        "packagesPath": "/Users/bohdankonopolskyi/.nuget/packages/",
+        "outputPath": "/Users/bohdankonopolskyi/RiderProjects/SecuritySystems/FileSystemEmulator/Core/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/bohdankonopolskyi/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.11, 6.0.11]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.11, 6.0.11]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/Cellar/dotnet/7.0.100/libexec/sdk/7.0.100/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
