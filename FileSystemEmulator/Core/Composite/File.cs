@@ -12,9 +12,4 @@ public class File : FileSystemComponent
     {
         return false;
     }
-
-    public override void Display(int depth)
-    {
-        Console.WriteLine(new String('-', depth) + " " + Name);
-    }
 }

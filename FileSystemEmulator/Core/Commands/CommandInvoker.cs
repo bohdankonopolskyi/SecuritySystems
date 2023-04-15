@@ -1,33 +1,23 @@
 namespace Core.Commands;
 
-public sealed class CommandInvoker
+public class CommandInvoker
 {
-    private Dictionary<string, ICommand> _commands;
-    private static CommandInvoker _instance;
-    
-    private CommandInvoker()
+    private readonly List<ICommand> _commands;
+    private ICommand _command;
+
+    public CommandInvoker()
     {
-        _commands = new Dictionary<string, ICommand>();
+        _commands = new List<ICommand>();
     }
 
-    public static CommandInvoker GetInstance()
+    public void SetCommand(ICommand command)
     {
-        if (_instance == null)
-        {
-            _instance = new CommandInvoker();
-        }
-
-        return _instance;
-    }
-    public void AddCommand(string key, ICommand command)
-    {
-        _commands.Add(key, command);
+        _command = command;
     }
 
-    public void ExecuteCommand(string commandKey)
+    public void Invoke()
     {
-        var command = _commands[commandKey];
-        if (command != null) 
-            command.Execute();
+        _commands.Add(_command);
+        _command.Execute();
     }
 }

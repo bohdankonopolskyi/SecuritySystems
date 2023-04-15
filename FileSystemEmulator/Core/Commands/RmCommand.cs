@@ -13,6 +13,6 @@ public class RmCommand : ICommand
 
     public void Execute()
     {
-        _fileSystem.Rm(_name);
+        _fileSystem.Remove(_name);
     }
 }

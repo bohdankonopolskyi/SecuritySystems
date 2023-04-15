@@ -2,38 +2,46 @@ namespace Core.Composite;
 
 public class Directory : FileSystemComponent
 {
-    private List<FileSystemComponent> _children = new List<FileSystemComponent>();
-
-    public List<FileSystemComponent> Children
+    public Directory(string name) : base(name)
     {
-        get
-        {
-            return _children;
-        }
     }
-    public Directory(string name) : base(name) { }
+
+    public List<FileSystemComponent> Children { get; } = new();
 
     public override bool IsComposite()
     {
         return true;
     }
-    
+
     public void Add(FileSystemComponent component)
     {
-        _children.Add(component);
+        Children.Add(component);
     }
 
     public void Remove(FileSystemComponent component)
     {
-        _children.Remove(component);
+        Children.Remove(component);
     }
 
-    public override void Display(int depth)
+    public string GetFullPathByName(string name)
     {
-        Console.WriteLine(new String('-', depth) + "+ " + Name);
-        foreach (FileSystemComponent component in _children)
+        return GetFullPathByNameRecursive(this, name);
+    }
+
+    private string GetFullPathByNameRecursive(Directory directory, string name)
+    {
+        if (directory.Name == name)
         {
-            component.Display(depth + 2);
+            return directory.Name;
         }
+
+        foreach (var child in directory.Children)
+            if (child is Directory childDirectory)
+            {
+                var result = GetFullPathByNameRecursive(childDirectory, name);
+                if (!string.IsNullOrEmpty(result)) return $"{directory.Name}/{result}";
+            }
+
+        return string.Empty;
     }
 }

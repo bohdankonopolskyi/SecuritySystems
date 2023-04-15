@@ -13,6 +13,6 @@ public class MkdirCommand : ICommand
 
     public void Execute()
     {
-        _fileSystem.Mkdir(_directoryName);
+        _fileSystem.CreateDirectory(_directoryName);
     }
 }

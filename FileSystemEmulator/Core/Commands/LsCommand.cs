@@ -11,6 +11,6 @@ public class LsCommand : ICommand
 
     public void Execute()
     {
-        _fileSystem.Ls();
+        _fileSystem.GetChildren();
     }
 }

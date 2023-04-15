@@ -4,7 +4,6 @@ namespace Core.Access;
 
 public class Security
 {
-    // Dictionary of access permissions for each component
     private Dictionary<FileSystemComponent, Dictionary<string, string>> _accessPermissions = new();
 
     public void AddAccessPermission(FileSystemComponent component, string userGroup, string accessLevel)

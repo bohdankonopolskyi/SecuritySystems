@@ -1,14 +1,19 @@
+using Core.Composite;
+
 namespace Core;
 
 public interface IFileSystem
 {
-    string GetUserGroup(string username, string password);
-    string CurrentDirectoryName { get; }
+    public string CurrentFile { get; }
+    public string CurrentDirectory { get; }
 
-     void Mkdir(string directoryName);
-     void Pwd();
-     void Ls();
-     void Cd(string path);
-     void Vi(string fileName);
-     void Rm(string name);
+    string GetUserGroup(string username, string password);
+
+    void CreateDirectory(string directoryName);
+    string GetPath();
+    List<FileSystemComponent> GetChildren();
+    void ChangeDirectory(string path);
+    void Vi(string fileName);
+    public void ModifyFile(string content);
+    void Remove(string name);
 }

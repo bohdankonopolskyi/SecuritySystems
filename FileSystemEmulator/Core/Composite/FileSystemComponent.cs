@@ -2,8 +2,6 @@ namespace Core.Composite;
 
 public abstract class FileSystemComponent
 {
-    public string Name { get; set; }
-    
     protected Dictionary<string, bool> _accessPermissions;
 
     public FileSystemComponent(string name)
@@ -12,7 +10,7 @@ public abstract class FileSystemComponent
         _accessPermissions = new Dictionary<string, bool>();
     }
 
-    public abstract void Display(int depth);
+    public string Name { get; set; }
 
     public virtual void AddAccessPermission(string user, bool hasAccess)
     {

@@ -1,10 +1,22 @@
-﻿using Core;
-class Program
+﻿using ConsoleClient;
+
+internal class Program
 {
-    static void Main(string[] args)
+    private static void Main(string[] args)
     {
-        // Display the number of command line arguments.
-        Console.WriteLine(args.Length);
+        Presenter.Execute("pwd");
+
+        var command = "";
+        while (true)
+        {
+            command = Console.ReadLine();
+            if (command == "q")
+            {
+                break;
+            }
+            var splitted = command.Split(" ");
+            Presenter.Execute(splitted[0], splitted[1]);
+        }
     }
 }
 

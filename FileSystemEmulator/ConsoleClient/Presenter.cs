@@ -5,32 +5,27 @@ namespace ConsoleClient;
 
 public class Presenter
 {
-    private IFileSystem _fileSystem;
-    private CommandInvoker _commandInvoker;
-
-    public Presenter()
+    private static Dictionary<string, CommandType> CommandTypes = new Dictionary<string, CommandType>()
     {
-        _fileSystem = FileSystem.GetInstance();
-        _commandInvoker = CommandInvoker.GetInstance();
-    }
-    
-    // Method to prompt the user for their login credentials
-    public void Login()
+        { "cd", CommandType.Cd },
+        { "ls", CommandType.Ls },
+        { "mkdir", CommandType.Mkdir },
+        { "pwd", CommandType.Pwd },
+        { "rm", CommandType.Rm },
+        { "vi", CommandType.Vi }
+    };
+
+    private static IFileSystem _fileSystem = new FileSystem();
+    private static CommandInvoker _invoker = new CommandInvoker();
+
+    public static void Execute(string command, string input = "")
     {
-        Console.WriteLine("Enter your username:");
-        string username = Console.ReadLine();
-        Console.WriteLine("Enter your password:");
-        string password = Console.ReadLine();
-
-        string userGroup = _fileSystem.GetUserGroup(username, password);
-
-        if (userGroup == "")
-        {
-            Console.WriteLine("Invalid login credentials. Exiting program...");
-            Environment.Exit(0);
-        }
-
-        Console.WriteLine("Welcome, " + userGroup + "!");
+        var commandType = CommandTypes[command.ToLower()];
+        if (commandType == null)
+            throw new Exception($"Invalid command: {command}");
+        
+        ICommand commandInstance = new FileSystemCommand(_fileSystem, commandType, input);
+        _invoker.SetCommand(commandInstance);
+        _invoker.Invoke();
     }
-    
 }

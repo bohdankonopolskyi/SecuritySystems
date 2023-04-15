@@ -11,6 +11,6 @@ public class PwdCommand : ICommand
 
     public void Execute()
     {
-        _fileSystem.Pwd();
+        _fileSystem.GetPath();
     }
 }

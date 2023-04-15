@@ -13,6 +13,6 @@ public class CdCommand : ICommand
 
     public void Execute()
     {
-        _fileSystem.Cd(_path);
+        _fileSystem.ChangeDirectory(_path);
     }
 }
