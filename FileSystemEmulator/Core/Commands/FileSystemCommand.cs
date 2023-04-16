@@ -35,6 +35,9 @@ public class FileSystemCommand : ICommand
             case CommandType.Vi:
                 Vi();
                 break;
+            case CommandType.Su:
+                Su();
+                break;
             default:
                 throw new ArgumentOutOfRangeException();
         }
@@ -49,8 +52,7 @@ public class FileSystemCommand : ICommand
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
-            throw;
+            Console.WriteLine(e.Message);
         }
     }
 
@@ -67,8 +69,7 @@ public class FileSystemCommand : ICommand
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
-            throw;
+            Console.WriteLine(e.Message);
         }
     }
 
@@ -82,14 +83,16 @@ public class FileSystemCommand : ICommand
         try
         {
             _fileSystem.Vi(_input);
-            Console.WriteLine($"{_fileSystem.CurrentFile}");
+            Console.WriteLine($"{_fileSystem.CurrentFile.Name}: ");
+            Console.Write(_fileSystem.CurrentFile.Content);
             var content = Console.ReadLine();
+            if (content == "")
+                return;
             _fileSystem.ModifyFile(content);
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
-            throw;
+            Console.WriteLine(e.Message);
         }
     }
 
@@ -101,8 +104,19 @@ public class FileSystemCommand : ICommand
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
-            throw;
+            Console.WriteLine(e.Message);
+        }
+    }
+
+    private void Su()
+    {
+        try
+        {
+            _fileSystem.ChangeUser(_input);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
         }
     }
 }

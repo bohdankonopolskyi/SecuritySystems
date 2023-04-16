@@ -8,47 +8,52 @@ namespace Core;
 public sealed class FileSystem : IFileSystem
 {
     private static FileSystem _instance;
-    private readonly Directory _root = new("~/");
+    private readonly Directory _root = new("~");
     private readonly Security _security = new();
     private FileSystemComponent _currentComponent;
-    private Directory _currentDirectory;
-    private File _currentFile;
     private string _currentUserGroup;
+    private readonly List<string> _users;
 
     public FileSystem()
     {
-        _security.AddAccessPermission(_root, "admin", "readwrite");
-        _security.AddAccessPermission(_root, "user", "read");
-        _currentDirectory = _root;
+        _users = new List<string> { "root", "user" };
+        _security.AddAccessPermission(_root, _users[0], "readwrite");
+        _security.AddAccessPermission(_root, _users[1], "read");
+        CurrentDirectory = _root;
     }
 
-    public string CurrentFile => _currentFile.Name;
-    public string CurrentDirectory => _currentDirectory.Name;
+    public File CurrentFile { get; private set; }
 
-    public string GetUserGroup(string username, string password)
+    public Directory CurrentDirectory { get; private set; }
+
+    public void ChangeUser(string username)
     {
-        if (username == "admin" && password == "adminpass") return "admin";
-
-        if (username == "user" && password == "userpass") return "user";
-
-        return "";
+        if (!_users.Contains(username))
+            throw new Exception("Invalid username");
+        _currentUserGroup = username;
     }
 
     //pwd
     public string GetPath()
     {
-        return _root.GetFullPathByName(_currentDirectory.Name);
+        return _root.GetFullPathByName(CurrentDirectory.Name);
     }
 
     //ls
     public List<FileSystemComponent> GetChildren()
     {
-        return _currentDirectory.Children;
+        return CurrentDirectory.Children;
     }
 
     //cd
     public void ChangeDirectory(string directoryName)
     {
+        if (directoryName == "~/")
+        {
+            CurrentDirectory = _root;
+            return;
+        }
+
         var directory = GetComponentByName(directoryName) as Directory;
 
         if (directory == null)
@@ -57,20 +62,20 @@ public sealed class FileSystem : IFileSystem
         if (!_security.HasAccess(directory, _currentUserGroup, "read"))
             throw new Exception("Access denied.");
 
-        _currentDirectory = directory;
+        CurrentDirectory = directory;
     }
 
     //mkdir
     public void CreateDirectory(string directoryName)
     {
-        if (!_security.HasAccess(_currentDirectory, _currentUserGroup, "readwrite"))
+        if (!_security.HasAccess(CurrentDirectory, _currentUserGroup, "readwrite"))
             throw new Exception("Access denied.");
 
         if (GetComponentByName(directoryName) != null)
             throw new Exception("Directory already exists.");
 
         var directory = new Directory(directoryName);
-        _currentDirectory.Add(directory);
+        CurrentDirectory.Add(directory);
 
         _security.AddAccessPermission(directory, _currentUserGroup, "readwrite");
     }
@@ -78,7 +83,7 @@ public sealed class FileSystem : IFileSystem
     //vi
     public void Vi(string fileName)
     {
-        if (!_security.HasAccess(_currentComponent, _currentUserGroup, "readwrite"))
+        if (!_security.HasAccess(CurrentDirectory, _currentUserGroup, "readwrite"))
             throw new Exception("Access denied.");
 
         var file = GetComponentByName(fileName) as File;
@@ -86,19 +91,19 @@ public sealed class FileSystem : IFileSystem
         if (file == null)
         {
             file = new File(fileName);
-            _currentDirectory.Add(file);
+            CurrentDirectory.Add(file);
 
             _security.AddAccessPermission(file, _currentUserGroup, "readwrite");
         }
 
-        _currentFile = file;
+        CurrentFile = file;
     }
 
     public void ModifyFile(string content)
     {
-        if (_currentFile == null)
+        if (CurrentFile == null)
             throw new Exception("File error");
-        _currentFile.Content = content;
+        CurrentFile.Content = content;
     }
 
 //rm
@@ -111,8 +116,8 @@ public sealed class FileSystem : IFileSystem
 
         if (!_security.HasAccess(component, _currentUserGroup, "readwrite"))
             throw new Exception("Access denied.");
-        
-        _currentDirectory.Remove(component);
+
+        CurrentDirectory.Remove(component);
     }
 
     public static FileSystem GetInstance()
@@ -125,7 +130,7 @@ public sealed class FileSystem : IFileSystem
 
     private FileSystemComponent GetComponentByName(string componentName)
     {
-        foreach (var component in _currentDirectory.Children)
+        foreach (var component in CurrentDirectory.Children)
             if (component.Name.ToLower() == componentName.ToLower())
                 return component;
         return null;

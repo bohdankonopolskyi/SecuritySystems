@@ -1,13 +1,15 @@
 using Core.Composite;
+using Directory = Core.Composite.Directory;
+using File = Core.Composite.File;
 
 namespace Core;
 
 public interface IFileSystem
 {
-    public string CurrentFile { get; }
-    public string CurrentDirectory { get; }
+    public File CurrentFile { get; }
+    public Directory CurrentDirectory { get; }
 
-    string GetUserGroup(string username, string password);
+    void ChangeUser(string username);
 
     void CreateDirectory(string directoryName);
     string GetPath();

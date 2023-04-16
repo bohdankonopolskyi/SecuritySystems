@@ -12,7 +12,8 @@ public class Presenter
         { "mkdir", CommandType.Mkdir },
         { "pwd", CommandType.Pwd },
         { "rm", CommandType.Rm },
-        { "vi", CommandType.Vi }
+        { "vi", CommandType.Vi },
+        {"su", CommandType.Su}
     };
 
     private static IFileSystem _fileSystem = new FileSystem();

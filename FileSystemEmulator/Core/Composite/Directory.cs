@@ -30,10 +30,7 @@ public class Directory : FileSystemComponent
 
     private string GetFullPathByNameRecursive(Directory directory, string name)
     {
-        if (directory.Name == name)
-        {
-            return directory.Name;
-        }
+        if (directory.Name == name) return $"{directory.Name}/";
 
         foreach (var child in directory.Children)
             if (child is Directory childDirectory)

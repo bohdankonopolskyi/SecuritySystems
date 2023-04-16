@@ -7,5 +7,6 @@ public enum CommandType
     Mkdir,
     Pwd,
     Rm,
-    Vi
+    Vi,
+    Su
 }
