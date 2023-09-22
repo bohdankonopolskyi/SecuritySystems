@@ -4,6 +4,9 @@ internal class Program
 {
     private static void Main(string[] args)
     {
+        
+        Console.WriteLine("Enter username");
+        Console.WriteLine("Enter username");
         Console.WriteLine("Enter username");
         var username = Console.ReadLine();
         Presenter.Execute("su", username);
