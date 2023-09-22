@@ -16,7 +16,7 @@ public sealed class FileSystem : IFileSystem
 
     public FileSystem()
     {
-        _users = new List<string> { "root", "user" };
+        _users = new List<string> { "root", "user123g" };
         _security.AddAccessPermission(_root, _users[0], "readwrite");
         _security.AddAccessPermission(_root, _users[1], "read");
         CurrentDirectory = _root;
